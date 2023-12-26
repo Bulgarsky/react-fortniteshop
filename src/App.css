@@ -19,3 +19,24 @@ footer {
 .card{
   background: bisque;
 }
+
+
+.cart{
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  cursor: pointer;
+  z-index: 5;
+  padding: 1rem;
+  background: dodgerblue;
+  color: white;
+
+}
+
+@media (min-width: 767px) {
+  .cart{
+    top: 5rem;
+    bottom: unset;
+  }
+}
