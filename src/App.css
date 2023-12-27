@@ -43,10 +43,29 @@ footer {
 
 .shop-cart{
   position: fixed;
-  max-width: 400px;
   z-index: 5;
   top: 50%;
   left: 50%;
-
-  box-shadow: 5px 5px 10px 1px lightgray;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 30rem;
+  max-width: 95%;
+  border-radius: 5px;
+  box-shadow: inset -1px 3px 8px 5px darkgray, 2px 5px 16px 0px darkslategray, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
+
+.cartlist-close{
+  color: darkgreen;
+}
+
+.cartlist-close, .cartlist-delete{
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.cartlist-close:hover, .cartlist-delete:hover {
+  cursor: pointer;
+  color: darkred;
+}
+

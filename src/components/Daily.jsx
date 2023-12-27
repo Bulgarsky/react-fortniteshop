@@ -9,7 +9,7 @@ export default function Daily(){
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cartItems, setCartItems] = useState([]);
-    const [isShopCart, setShopCart] = useState(false);
+    const [isShowShopCartList, setIsShowShopCartList] = useState(false);
     const [showCartIcon, setShowCartIcon] = useState(false);
 
     useEffect(function getItemList() {
@@ -34,11 +34,11 @@ export default function Daily(){
     function addToBasket(currentItem){
         //принимаем {currentItem} в метод()
 
-        //находим индекс(позицию) в [order], сравнивая  {currentItem.itemID} с каждым {элемент.itemID} из [order]
+        //находим индекс(позицию) в [cartItems], сравнивая  {currentItem.itemID} с каждым {элемент.itemID} из [cartItems]
         const itemIndex = cartItems.findIndex(
             //каждый элемент сравниваем по ключу itemID
-            order =>
-                order.itemID === currentItem.itemID
+            cartItem =>
+                cartItem.itemID === currentItem.itemID
         );  //если не найдет возвращает -1
 
         if (itemIndex < 0){
@@ -54,10 +54,10 @@ export default function Daily(){
         } else {
             //иначе, берем {объект} по позиции(индексу)
             const newCartItem = cartItems.map((cartItem, index) => {
-                //если позиция найдена
+                //если позиция найдена по индексу
                 if (index === itemIndex) {
                     return {
-                        //разворачиваем обьект и изменяем #кол-во
+                        //разворачиваем обьект и изменяем значение в #кол-во
                         ...cartItem,
                         quantity: cartItem.quantity + 1
                     }
@@ -66,14 +66,15 @@ export default function Daily(){
                     return cartItem;
                 }
             });
-            //возвращаем стейт {объекта}
+            //устанвливаем стейт {объекта}
             setCartItems(newCartItem);
         }
+        //вкл показ иконки корзины
         setShowCartIcon(true);
     }
 
-    function handleShopCartShow(){
-        setShopCart(!isShopCart);
+    function handleShowPreorderList(){
+        setIsShowShopCartList(!isShowShopCartList);
     }
 
     return(
@@ -82,14 +83,14 @@ export default function Daily(){
                 showCartIcon
                 ? <ShopCart
                         quantity={cartItems.length}
-                        handleShopCartShow={handleShopCartShow}
+                        handleShowPreorderList={handleShowPreorderList}
                     />
                     : ""
 
             }
 
             {
-                isShopCart && <ShopCartList cartItems={cartItems}/>
+                isShowShopCartList && <ShopCartList cartItems={cartItems} handleShowPreorderList={handleShowPreorderList}/>
             }
 
             <div className="container content">
