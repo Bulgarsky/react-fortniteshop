@@ -1,19 +1,23 @@
 import {Button, Card} from "react-bootstrap";
+import {useState} from "react";
 
-export default function DailyShopItem(props){
-
+export default function DailyItem(props){
+    // const [quantity, setQuantity] = useState(1);
     const{
-        id,
+        id: itemID,
         name: title,
         description,
         type,
         internalRarity: rarity,
         price,
-        image
+        image,
+        addToBasket = Function.prototype,
+        handleShopCartShow = Function.prototype
     } = props;
 
+
     return(
-        <div id={id} className="item">
+        <div className="item">
             <Card className="card" style={{ width: '18rem', gap: "1rem"}}>
                 <Card.Header>
                     <Card.Title style={{height: "25px"}} className="text-center">
@@ -31,14 +35,14 @@ export default function DailyShopItem(props){
                 <Card.Body>
                     <Card.Text style={{height: "75px"}}>
                         <span className="small">Описание:</span>
-                        <p>{description}</p>
+                        <br />
+                        <span>{description}</span>
                     </Card.Text>
-                    <Card.Text>
                         <hr />
-                    </Card.Text>
-                    <Card.Text>
                         <div className="d-grid gap-2">
-                            <Button variant="primary" size="lg">
+                            <Button variant="primary" size="lg"
+                                onClick={() => addToBasket({itemID, title, price})}
+                            >
                                 <span className="text-center">
                                      {price + ` `}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-cash" viewBox="0 0 16 16">
@@ -48,8 +52,6 @@ export default function DailyShopItem(props){
                                 </span>
                             </Button>
                         </div>
-                    </Card.Text>
-
                 </Card.Body>
             </Card>
         </div>

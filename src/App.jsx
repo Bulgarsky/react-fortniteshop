@@ -5,7 +5,7 @@ import './App.css'
 
 import Header from "./components/layout/Header.jsx";
 import Footer from "./components/layout/Footer.jsx";
-import DailyShop from "./components/DailyShop.jsx";
+import Daily from "./components/Daily.jsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
         <Header />
-        <DailyShop />
+        <Daily />
         <Footer />
     </>
   )

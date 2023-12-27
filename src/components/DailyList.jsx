@@ -1,7 +1,11 @@
-import DailyShopItem from "./DailyShopItem.jsx";
+import DailyItem from "./DailyItem.jsx";
 
-export default function DailyShopList(props){
-    const {items= [] } = props;
+export default function DailyList(props){
+    const {
+        items= [],
+        addToBasket = Function.prototype,
+        handleShopCartShow = Function.prototype
+    } = props;
     /*
     if (!items.length) {
         return <h3>Ничего не найдено !</h3>
@@ -14,9 +18,11 @@ export default function DailyShopList(props){
             {
                 items.length
                     ? (items.map(item =>(
-                        <DailyShopItem
+                        <DailyItem
                             key={item.items}
                             {...item}
+                            addToBasket={addToBasket}
+                            handleShopCartShow={handleShopCartShow}
                         />
                         )))
                     : <h3>Ничего не найдено !</h3>
