@@ -3,24 +3,24 @@ import ShopCartItem from "./ShopCartItem.jsx";
 
 export default function ShopCartList(props) {
     const {
-        orders = []
+        cartItems = []
     } = props;
 
     return(
-        <>
+        <div className="shop-cart">
             <ListGroup>
                 <ListGroup.Item variant="success">Список добавленных предметов:</ListGroup.Item>
-                { orders.length
-                    ? orders.map((element) =>
+                { cartItems.length
+                    ? cartItems.map((item) =>
                         <ShopCartItem
-                            {...element}
-                            key={element.itemID}
+                            {...item}
+                            key={item.itemID}
                         />
                     )
                     : <ListGroup.Item variant="secondary">Корзина пуста!</ListGroup.Item>
                 }
-                <ListGroup.Item variant="success">Итого: </ListGroup.Item>
+                <ListGroup.Item variant="success">Итого: {}</ListGroup.Item>
             </ListGroup>
-        </>
+        </div>
     )
 }

@@ -2,7 +2,6 @@ import {Button, Card} from "react-bootstrap";
 import {useState} from "react";
 
 export default function DailyItem(props){
-    // const [quantity, setQuantity] = useState(1);
     const{
         id: itemID,
         name: title,
@@ -12,7 +11,6 @@ export default function DailyItem(props){
         price,
         image,
         addToBasket = Function.prototype,
-        handleShopCartShow = Function.prototype
     } = props;
 
 

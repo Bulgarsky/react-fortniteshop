@@ -8,8 +8,9 @@ import ShopCartList from "./ShopCartList.jsx";
 export default function Daily(){
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [orders, setOrders] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
     const [isShopCart, setShopCart] = useState(false);
+    const [showCartIcon, setShowCartIcon] = useState(false);
 
     useEffect(function getItemList() {
         fetch(DAILY_SHOP, {
@@ -29,15 +30,12 @@ export default function Daily(){
             });
     }, []);
 
-    function handleShopCartShow(){
-        setShopCart(!isShopCart);
-    }
 
     function addToBasket(currentItem){
         //принимаем {currentItem} в метод()
 
         //находим индекс(позицию) в [order], сравнивая  {currentItem.itemID} с каждым {элемент.itemID} из [order]
-        const itemIndex = orders.findIndex(
+        const itemIndex = cartItems.findIndex(
             //каждый элемент сравниваем по ключу itemID
             order =>
                 order.itemID === currentItem.itemID
@@ -51,35 +49,47 @@ export default function Daily(){
                 quantity: 1,
             }
             //добавляем [...копируя имеющиеся элементы, добавляем новый элемент]
-            setOrders([...orders, newItem]);
+            setCartItems([...cartItems, newItem]);
+
         } else {
             //иначе, берем {объект} по позиции(индексу)
-            const newOrder = orders.map((order, index) => {
+            const newCartItem = cartItems.map((cartItem, index) => {
                 //если позиция найдена
                 if (index === itemIndex) {
                     return {
                         //разворачиваем обьект и изменяем #кол-во
-                        ...order,
-                        quantity: order.quantity + 1
+                        ...cartItem,
+                        quantity: cartItem.quantity + 1
                     }
                 }else{
                     //иначе вовзращаем обьект без изменений
-                    return order;
+                    return cartItem;
                 }
             });
             //возвращаем стейт {объекта}
-            setOrders(newOrder);
+            setCartItems(newCartItem);
         }
+        setShowCartIcon(true);
+    }
+
+    function handleShopCartShow(){
+        setShopCart(!isShopCart);
     }
 
     return(
         <>
-            <ShopCart
-                quantity={orders.length}
-                handleShopCartShow={handleShopCartShow}
-            />
             {
-                isShopCart && <ShopCartList orders={orders}/>
+                showCartIcon
+                ? <ShopCart
+                        quantity={cartItems.length}
+                        handleShopCartShow={handleShopCartShow}
+                    />
+                    : ""
+
+            }
+
+            {
+                isShopCart && <ShopCartList cartItems={cartItems}/>
             }
 
             <div className="container content">

@@ -14,7 +14,7 @@ export default function ShopCartItem(props){
     return(
         <>
             <ListGroup.Item variant="light">
-                <span>{title}</span>
+                <span>{title+" "}</span>
                     X{quantity} = {(price*quantity) + " "}
                 <svg
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-x-square" viewBox="0 0 16 16">

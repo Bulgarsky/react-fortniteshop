@@ -4,7 +4,6 @@ export default function DailyList(props){
     const {
         items= [],
         addToBasket = Function.prototype,
-        handleShopCartShow = Function.prototype
     } = props;
     /*
     if (!items.length) {
@@ -22,7 +21,6 @@ export default function DailyList(props){
                             key={item.items}
                             {...item}
                             addToBasket={addToBasket}
-                            handleShopCartShow={handleShopCartShow}
                         />
                         )))
                     : <h3>Ничего не найдено !</h3>
