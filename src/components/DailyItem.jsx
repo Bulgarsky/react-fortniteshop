@@ -1,8 +1,13 @@
 import {Button, Card} from "react-bootstrap";
-import {useState} from "react";
+import {AppContext} from "../hooks/ContextComponent.jsx";
+import {useContext} from "react";
 
 export default function DailyItem(props){
     const{
+        addToBasket = Function.prototype
+    } = useContext(AppContext);
+
+    const {
         id: itemID,
         name: title,
         description,
@@ -10,7 +15,6 @@ export default function DailyItem(props){
         internalRarity: rarity,
         price,
         image,
-        addToBasket = Function.prototype,
     } = props;
 
 

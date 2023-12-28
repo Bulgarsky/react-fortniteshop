@@ -1,11 +1,14 @@
 import {Button, ListGroup} from "react-bootstrap";
 import ShopCartItem from "./ShopCartItem.jsx";
 
-export default function ShopCartList(props) {
+import {AppContext} from "../hooks/ContextComponent.jsx";
+import {useContext} from "react";
+
+export default function ShopCartList() {
     const {
         cartItems = [],
         handleShowPreorderList = Function.prototype
-    } = props;
+    } = useContext(AppContext);
 
     const totalPrice = cartItems.reduce((total, item) => {
         return total + item.price * item.quantity

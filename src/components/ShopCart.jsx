@@ -1,10 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-export default function ShopCart(props){
-    const{
-        quantity,
-        handleShowPreorderList = Function.prototype
-    } = props;
 
+import {AppContext} from "../hooks/ContextComponent.jsx"
+import {useContext} from "react";
+
+export default function ShopCart(){
+    const {
+        handleShowPreorderList = Function.prototype,
+        cartItems = []
+    } = useContext(AppContext);
+
+    const quantity = cartItems.length;
 
     return(
         <div className="cart"

@@ -5,13 +5,6 @@ export default function Header(){
             <Navbar bg="primary" data-bs-theme="dark">
                 <Container>
                     <Navbar.Brand href="#home"><span>FORTNITE</span></Navbar.Brand>
-                    {/*<Nav className="me-auto">*/}
-                    {/*    <Nav.Link href="#daily" >Daily Items</Nav.Link>*/}
-                    {/*    <Nav.Link href="#upcoming" >Upcoming Items</Nav.Link>*/}
-                    {/*    <Nav.Link href="#" */}
-                    {/*
-                    {/*    </Nav.Link>*/}
-                    {/*</Nav>*/}
                     <div className="vr" />
                     <div className="p-2 text-white">
                         Daily Items
